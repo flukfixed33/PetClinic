@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [PetClinic]    Script Date: 4/27/2020 2:18:45 PM ******/
+/****** Object:  Database [PetClinic]    Script Date: 4/27/2020 2:25:05 PM ******/
 CREATE DATABASE [PetClinic]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -87,7 +87,7 @@ ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
 GO
 USE [PetClinic]
 GO
-/****** Object:  Table [dbo].[Table_TypePet]    Script Date: 4/27/2020 2:18:45 PM ******/
+/****** Object:  Table [dbo].[Table_TypePet]    Script Date: 4/27/2020 2:25:05 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -101,7 +101,7 @@ CREATE TABLE [dbo].[Table_TypePet](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Table_Owner]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[Table_Owner]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -118,7 +118,7 @@ CREATE TABLE [dbo].[Table_Owner](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Table_Pet]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[Table_Pet]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +136,7 @@ CREATE TABLE [dbo].[Table_Pet](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[View_1]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  View [dbo].[View_1]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,7 +149,7 @@ FROM            dbo.Table_Owner INNER JOIN
                          dbo.Table_Pet ON dbo.Table_Owner.Owner_ID = dbo.Table_Pet.Owner_ID INNER JOIN
                          dbo.Table_TypePet ON dbo.Table_Pet.Type_ID = dbo.Table_TypePet.Type_ID
 GO
-/****** Object:  Table [dbo].[Table_Visit]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[Table_Visit]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,7 +166,7 @@ CREATE TABLE [dbo].[Table_Visit](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[View_visit]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  View [dbo].[View_visit]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +180,7 @@ FROM            dbo.Table_Pet INNER JOIN
                          dbo.Table_TypePet ON dbo.Table_Pet.Type_ID = dbo.Table_TypePet.Type_ID INNER JOIN
                          dbo.Table_Visit ON dbo.Table_Pet.Pet_ID = dbo.Table_Visit.Pet_ID
 GO
-/****** Object:  Table [dbo].[AdminLogin]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[AdminLogin]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +195,7 @@ CREATE TABLE [dbo].[AdminLogin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Table_Promote]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[Table_Promote]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -211,7 +211,7 @@ CREATE TABLE [dbo].[Table_Promote](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Table_Typeuser]    Script Date: 4/27/2020 2:18:46 PM ******/
+/****** Object:  Table [dbo].[Table_Typeuser]    Script Date: 4/27/2020 2:25:06 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
