@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PetClinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Typeuser_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Table_Owner">
+          <Key>
+            <PropertyRef Name="Owner_ID" />
+          </Key>
+          <Property Name="Owner_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Pet">
+          <Key>
+            <PropertyRef Name="Pet_ID" />
+          </Key>
+          <Property Name="Pet_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_ID" Type="int" />
+          <Property Name="Owner_ID" Type="int" />
+          <Property Name="Pet_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="date" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Promote">
+          <Key>
+            <PropertyRef Name="Promote_ID" />
+          </Key>
+          <Property Name="Promote_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Promote_Name" Type="nvarchar(max)" />
+          <Property Name="Promote_Pic" Type="nvarchar(max)" />
+          <Property Name="Promote_Des" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Table_TypePet">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Typeuser">
+          <Key>
+            <PropertyRef Name="Typeuser_ID" />
+          </Key>
+          <Property Name="Typeuser_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeuserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Table_Visit">
+          <Key>
+            <PropertyRef Name="Visit_ID" />
+          </Key>
+          <Property Name="Visit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pet_ID" Type="int" />
+          <Property Name="VisitDate" Type="date" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="NextDate" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetClinic.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="Owner_ID" />
+            <PropertyRef Name="Pet_ID" />
+            <PropertyRef Name="Pet_Name" />
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Owner_ID" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pet_ID" Type="int" Nullable="false" />
+          <Property Name="Pet_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="date" />
+          <Property Name="Type_ID" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PetClinic.dbo.View_visit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_visit">
+          <Key>
+            <PropertyRef Name="Pet_ID" />
+            <PropertyRef Name="Pet_Name" />
+            <PropertyRef Name="Owner_ID" />
+            <PropertyRef Name="Type_ID" />
+            <PropertyRef Name="Visit_ID" />
+          </Key>
+          <Property Name="Pet_ID" Type="int" Nullable="false" />
+          <Property Name="Pet_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="date" />
+          <Property Name="Owner_ID" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type_ID" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Visit_ID" Type="int" Nullable="false" />
+          <Property Name="VisitDate" Type="date" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="NextDate" Type="date" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AdminLogin_Table_Typeuser">
+          <End Role="Table_Typeuser" Type="Self.Table_Typeuser" Multiplicity="0..1" />
+          <End Role="AdminLogin" Type="Self.AdminLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Typeuser">
+              <PropertyRef Name="Typeuser_ID" />
+            </Principal>
+            <Dependent Role="AdminLogin">
+              <PropertyRef Name="Typeuser_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pet_Table_Owner">
+          <End Role="Table_Owner" Type="Self.Table_Owner" Multiplicity="0..1" />
+          <End Role="Table_Pet" Type="Self.Table_Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Owner">
+              <PropertyRef Name="Owner_ID" />
+            </Principal>
+            <Dependent Role="Table_Pet">
+              <PropertyRef Name="Owner_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pet_Table_TypePet">
+          <End Role="Table_TypePet" Type="Self.Table_TypePet" Multiplicity="0..1" />
+          <End Role="Table_Pet" Type="Self.Table_Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_TypePet">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Table_Pet">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Visit_Table_Pet">
+          <End Role="Table_Pet" Type="Self.Table_Pet" Multiplicity="0..1" />
+          <End Role="Table_Visit" Type="Self.Table_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Pet">
+              <PropertyRef Name="Pet_ID" />
+            </Principal>
+            <Dependent Role="Table_Visit">
+              <PropertyRef Name="Pet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetClinicModelStoreContainer">
+          <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Owner" EntityType="Self.Table_Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Pet" EntityType="Self.Table_Pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Promote" EntityType="Self.Table_Promote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_TypePet" EntityType="Self.Table_TypePet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Typeuser" EntityType="Self.Table_Typeuser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Visit" EntityType="Self.Table_Visit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1].[Owner_ID] AS [Owner_ID], 
+    [View_1].[Firstname] AS [Firstname], 
+    [View_1].[Lastname] AS [Lastname], 
+    [View_1].[Address] AS [Address], 
+    [View_1].[Telephone] AS [Telephone], 
+    [View_1].[Pet_ID] AS [Pet_ID], 
+    [View_1].[Pet_Name] AS [Pet_Name], 
+    [View_1].[Sex] AS [Sex], 
+    [View_1].[Age] AS [Age], 
+    [View_1].[Type_ID] AS [Type_ID], 
+    [View_1].[TypeName] AS [TypeName]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_visit" EntityType="Self.View_visit" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_visit].[Pet_ID] AS [Pet_ID], 
+    [View_visit].[Pet_Name] AS [Pet_Name], 
+    [View_visit].[Age] AS [Age], 
+    [View_visit].[Owner_ID] AS [Owner_ID], 
+    [View_visit].[Firstname] AS [Firstname], 
+    [View_visit].[Lastname] AS [Lastname], 
+    [View_visit].[Address] AS [Address], 
+    [View_visit].[Telephone] AS [Telephone], 
+    [View_visit].[Type_ID] AS [Type_ID], 
+    [View_visit].[TypeName] AS [TypeName], 
+    [View_visit].[Visit_ID] AS [Visit_ID], 
+    [View_visit].[VisitDate] AS [VisitDate], 
+    [View_visit].[Description] AS [Description], 
+    [View_visit].[NextDate] AS [NextDate], 
+    [View_visit].[Sex] AS [Sex]
+    FROM [dbo].[View_visit] AS [View_visit]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AdminLogin_Table_Typeuser" Association="Self.FK_AdminLogin_Table_Typeuser">
+            <End Role="Table_Typeuser" EntitySet="Table_Typeuser" />
+            <End Role="AdminLogin" EntitySet="AdminLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pet_Table_Owner" Association="Self.FK_Table_Pet_Table_Owner">
+            <End Role="Table_Owner" EntitySet="Table_Owner" />
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pet_Table_TypePet" Association="Self.FK_Table_Pet_Table_TypePet">
+            <End Role="Table_TypePet" EntitySet="Table_TypePet" />
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Visit_Table_Pet" Association="Self.FK_Table_Visit_Table_Pet">
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+            <End Role="Table_Visit" EntitySet="Table_Visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PetClinicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminLogins" EntityType="PetClinicModel.AdminLogin" />
+          <EntitySet Name="Table_Owner" EntityType="PetClinicModel.Table_Owner" />
+          <EntitySet Name="Table_Pet" EntityType="PetClinicModel.Table_Pet" />
+          <EntitySet Name="Table_Promote" EntityType="PetClinicModel.Table_Promote" />
+          <EntitySet Name="Table_TypePet" EntityType="PetClinicModel.Table_TypePet" />
+          <EntitySet Name="Table_Typeuser" EntityType="PetClinicModel.Table_Typeuser" />
+          <EntitySet Name="Table_Visit" EntityType="PetClinicModel.Table_Visit" />
+          <EntitySet Name="View_1" EntityType="PetClinicModel.View_1" />
+          <AssociationSet Name="FK_AdminLogin_Table_Typeuser" Association="PetClinicModel.FK_AdminLogin_Table_Typeuser">
+            <End Role="Table_Typeuser" EntitySet="Table_Typeuser" />
+            <End Role="AdminLogin" EntitySet="AdminLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pet_Table_Owner" Association="PetClinicModel.FK_Table_Pet_Table_Owner">
+            <End Role="Table_Owner" EntitySet="Table_Owner" />
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pet_Table_TypePet" Association="PetClinicModel.FK_Table_Pet_Table_TypePet">
+            <End Role="Table_TypePet" EntitySet="Table_TypePet" />
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Visit_Table_Pet" Association="PetClinicModel.FK_Table_Visit_Table_Pet">
+            <End Role="Table_Pet" EntitySet="Table_Pet" />
+            <End Role="Table_Visit" EntitySet="Table_Visit" />
+          </AssociationSet>
+          <EntitySet Name="View_visit" EntityType="PetClinicModel.View_visit" />
+        </EntityContainer>
+        <EntityType Name="AdminLogin">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Typeuser_ID" Type="Int32" />
+          <NavigationProperty Name="Table_Typeuser" Relationship="PetClinicModel.FK_AdminLogin_Table_Typeuser" FromRole="AdminLogin" ToRole="Table_Typeuser" />
+        </EntityType>
+        <EntityType Name="Table_Owner">
+          <Key>
+            <PropertyRef Name="Owner_ID" />
+          </Key>
+          <Property Name="Owner_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Pet" Relationship="PetClinicModel.FK_Table_Pet_Table_Owner" FromRole="Table_Owner" ToRole="Table_Pet" />
+        </EntityType>
+        <EntityType Name="Table_Pet">
+          <Key>
+            <PropertyRef Name="Pet_ID" />
+          </Key>
+          <Property Name="Pet_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_ID" Type="Int32" />
+          <Property Name="Owner_ID" Type="Int32" />
+          <Property Name="Pet_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="DateTime" Precision="0" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Owner" Relationship="PetClinicModel.FK_Table_Pet_Table_Owner" FromRole="Table_Pet" ToRole="Table_Owner" />
+          <NavigationProperty Name="Table_TypePet" Relationship="PetClinicModel.FK_Table_Pet_Table_TypePet" FromRole="Table_Pet" ToRole="Table_TypePet" />
+          <NavigationProperty Name="Table_Visit" Relationship="PetClinicModel.FK_Table_Visit_Table_Pet" FromRole="Table_Pet" ToRole="Table_Visit" />
+        </EntityType>
+        <EntityType Name="Table_Promote">
+          <Key>
+            <PropertyRef Name="Promote_ID" />
+          </Key>
+          <Property Name="Promote_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Promote_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Promote_Pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Promote_Des" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Table_TypePet">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Pet" Relationship="PetClinicModel.FK_Table_Pet_Table_TypePet" FromRole="Table_TypePet" ToRole="Table_Pet" />
+        </EntityType>
+        <EntityType Name="Table_Typeuser">
+          <Key>
+            <PropertyRef Name="Typeuser_ID" />
+          </Key>
+          <Property Name="Typeuser_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeuserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AdminLogins" Relationship="PetClinicModel.FK_AdminLogin_Table_Typeuser" FromRole="Table_Typeuser" ToRole="AdminLogin" />
+        </EntityType>
+        <EntityType Name="Table_Visit">
+          <Key>
+            <PropertyRef Name="Visit_ID" />
+          </Key>
+          <Property Name="Visit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pet_ID" Type="Int32" />
+          <Property Name="VisitDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NextDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Table_Pet" Relationship="PetClinicModel.FK_Table_Visit_Table_Pet" FromRole="Table_Visit" ToRole="Table_Pet" />
+        </EntityType>
+        <EntityType Name="View_1">
+          <Key>
+            <PropertyRef Name="Owner_ID" />
+            <PropertyRef Name="Pet_ID" />
+            <PropertyRef Name="Pet_Name" />
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Owner_ID" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pet_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pet_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="DateTime" Precision="0" />
+          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AdminLogin_Table_Typeuser">
+          <End Type="PetClinicModel.Table_Typeuser" Role="Table_Typeuser" Multiplicity="0..1" />
+          <End Type="PetClinicModel.AdminLogin" Role="AdminLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Typeuser">
+              <PropertyRef Name="Typeuser_ID" />
+            </Principal>
+            <Dependent Role="AdminLogin">
+              <PropertyRef Name="Typeuser_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pet_Table_Owner">
+          <End Type="PetClinicModel.Table_Owner" Role="Table_Owner" Multiplicity="0..1" />
+          <End Type="PetClinicModel.Table_Pet" Role="Table_Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Owner">
+              <PropertyRef Name="Owner_ID" />
+            </Principal>
+            <Dependent Role="Table_Pet">
+              <PropertyRef Name="Owner_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pet_Table_TypePet">
+          <End Type="PetClinicModel.Table_TypePet" Role="Table_TypePet" Multiplicity="0..1" />
+          <End Type="PetClinicModel.Table_Pet" Role="Table_Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_TypePet">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Table_Pet">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Visit_Table_Pet">
+          <End Type="PetClinicModel.Table_Pet" Role="Table_Pet" Multiplicity="0..1" />
+          <End Type="PetClinicModel.Table_Visit" Role="Table_Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Pet">
+              <PropertyRef Name="Pet_ID" />
+            </Principal>
+            <Dependent Role="Table_Visit">
+              <PropertyRef Name="Pet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="View_visit">
+          <Key>
+            <PropertyRef Name="Pet_ID" />
+            <PropertyRef Name="Pet_Name" />
+            <PropertyRef Name="Owner_ID" />
+            <PropertyRef Name="Type_ID" />
+            <PropertyRef Name="Visit_ID" />
+          </Key>
+          <Property Name="Pet_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pet_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="DateTime" Precision="0" />
+          <Property Name="Owner_ID" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Visit_ID" Type="Int32" Nullable="false" />
+          <Property Name="VisitDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NextDate" Type="DateTime" Precision="0" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetClinicModelStoreContainer" CdmEntityContainer="PetClinicEntities">
+          <EntitySetMapping Name="AdminLogins">
+            <EntityTypeMapping TypeName="PetClinicModel.AdminLogin">
+              <MappingFragment StoreEntitySet="AdminLogin">
+                <ScalarProperty Name="Typeuser_ID" ColumnName="Typeuser_ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Owner">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_Owner">
+              <MappingFragment StoreEntitySet="Table_Owner">
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Owner_ID" ColumnName="Owner_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Pet">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_Pet">
+              <MappingFragment StoreEntitySet="Table_Pet">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Pet_Name" ColumnName="Pet_Name" />
+                <ScalarProperty Name="Owner_ID" ColumnName="Owner_ID" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Pet_ID" ColumnName="Pet_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Promote">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_Promote">
+              <MappingFragment StoreEntitySet="Table_Promote">
+                <ScalarProperty Name="Promote_Des" ColumnName="Promote_Des" />
+                <ScalarProperty Name="Promote_Pic" ColumnName="Promote_Pic" />
+                <ScalarProperty Name="Promote_Name" ColumnName="Promote_Name" />
+                <ScalarProperty Name="Promote_ID" ColumnName="Promote_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_TypePet">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_TypePet">
+              <MappingFragment StoreEntitySet="Table_TypePet">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Typeuser">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_Typeuser">
+              <MappingFragment StoreEntitySet="Table_Typeuser">
+                <ScalarProperty Name="TypeuserName" ColumnName="TypeuserName" />
+                <ScalarProperty Name="Typeuser_ID" ColumnName="Typeuser_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Visit">
+            <EntityTypeMapping TypeName="PetClinicModel.Table_Visit">
+              <MappingFragment StoreEntitySet="Table_Visit">
+                <ScalarProperty Name="NextDate" ColumnName="NextDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+                <ScalarProperty Name="Pet_ID" ColumnName="Pet_ID" />
+                <ScalarProperty Name="Visit_ID" ColumnName="Visit_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1">
+            <EntityTypeMapping TypeName="PetClinicModel.View_1">
+              <MappingFragment StoreEntitySet="View_1">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Pet_Name" ColumnName="Pet_Name" />
+                <ScalarProperty Name="Pet_ID" ColumnName="Pet_ID" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Owner_ID" ColumnName="Owner_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_visit">
+            <EntityTypeMapping TypeName="PetClinicModel.View_visit">
+              <MappingFragment StoreEntitySet="View_visit">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="NextDate" ColumnName="NextDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VisitDate" ColumnName="VisitDate" />
+                <ScalarProperty Name="Visit_ID" ColumnName="Visit_ID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Owner_ID" ColumnName="Owner_ID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Pet_Name" ColumnName="Pet_Name" />
+                <ScalarProperty Name="Pet_ID" ColumnName="Pet_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@model PetClinic.Models.Table_Pet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Table_Pet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pet_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pet_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Table_Owner.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table_Owner.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Table_TypePet.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table_TypePet.TypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Pet_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PetClinicConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PetClinicConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PetClinicConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_visitTableAdapter" GeneratorDataComponentClassName="View_visitTableAdapter" Name="View_visit" UserDataComponentName="View_visitTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PetClinicConnectionString (Web.config)" DbObjectName="PetClinic.dbo.View_visit" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Pet_ID, Pet_Name, Age, Owner_ID, Firstname, Lastname, Address, Telephone, Type_ID, TypeName, Visit_ID, VisitDate, Description, NextDate, Sex FROM dbo.View_visit</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Pet_ID" DataSetColumn="Pet_ID" />
+              <Mapping SourceColumn="Pet_Name" DataSetColumn="Pet_Name" />
+              <Mapping SourceColumn="Age" DataSetColumn="Age" />
+              <Mapping SourceColumn="Owner_ID" DataSetColumn="Owner_ID" />
+              <Mapping SourceColumn="Firstname" DataSetColumn="Firstname" />
+              <Mapping SourceColumn="Lastname" DataSetColumn="Lastname" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="Telephone" DataSetColumn="Telephone" />
+              <Mapping SourceColumn="Type_ID" DataSetColumn="Type_ID" />
+              <Mapping SourceColumn="TypeName" DataSetColumn="TypeName" />
+              <Mapping SourceColumn="Visit_ID" DataSetColumn="Visit_ID" />
+              <Mapping SourceColumn="VisitDate" DataSetColumn="VisitDate" />
+              <Mapping SourceColumn="Description" DataSetColumn="Description" />
+              <Mapping SourceColumn="NextDate" DataSetColumn="NextDate" />
+              <Mapping SourceColumn="Sex" DataSetColumn="Sex" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="View_visit" msprop:Generator_TableClassName="View_visitDataTable" msprop:Generator_TableVarName="tableView_visit" msprop:Generator_TablePropName="View_visit" msprop:Generator_RowDeletingName="View_visitRowDeleting" msprop:Generator_RowChangingName="View_visitRowChanging" msprop:Generator_RowEvHandlerName="View_visitRowChangeEventHandler" msprop:Generator_RowDeletedName="View_visitRowDeleted" msprop:Generator_UserTableName="View_visit" msprop:Generator_RowChangedName="View_visitRowChanged" msprop:Generator_RowEvArgName="View_visitRowChangeEvent" msprop:Generator_RowClassName="View_visitRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pet_ID" msprop:Generator_ColumnVarNameInTable="columnPet_ID" msprop:Generator_ColumnPropNameInRow="Pet_ID" msprop:Generator_ColumnPropNameInTable="Pet_IDColumn" msprop:Generator_UserColumnName="Pet_ID" type="xs:int" />
+              <xs:element name="Pet_Name" msprop:Generator_ColumnVarNameInTable="columnPet_Name" msprop:Generator_ColumnPropNameInRow="Pet_Name" msprop:Generator_ColumnPropNameInTable="Pet_NameColumn" msprop:Generator_UserColumnName="Pet_Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Owner_ID" msprop:Generator_ColumnVarNameInTable="columnOwner_ID" msprop:Generator_ColumnPropNameInRow="Owner_ID" msprop:Generator_ColumnPropNameInTable="Owner_IDColumn" msprop:Generator_UserColumnName="Owner_ID" type="xs:int" />
+              <xs:element name="Firstname" msprop:Generator_ColumnVarNameInTable="columnFirstname" msprop:Generator_ColumnPropNameInRow="Firstname" msprop:Generator_ColumnPropNameInTable="FirstnameColumn" msprop:Generator_UserColumnName="Firstname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lastname" msprop:Generator_ColumnVarNameInTable="columnLastname" msprop:Generator_ColumnPropNameInRow="Lastname" msprop:Generator_ColumnPropNameInTable="LastnameColumn" msprop:Generator_UserColumnName="Lastname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Telephone" msprop:Generator_ColumnVarNameInTable="columnTelephone" msprop:Generator_ColumnPropNameInRow="Telephone" msprop:Generator_ColumnPropNameInTable="TelephoneColumn" msprop:Generator_UserColumnName="Telephone" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Type_ID" msprop:Generator_ColumnVarNameInTable="columnType_ID" msprop:Generator_ColumnPropNameInRow="Type_ID" msprop:Generator_ColumnPropNameInTable="Type_IDColumn" msprop:Generator_UserColumnName="Type_ID" type="xs:int" />
+              <xs:element name="TypeName" msprop:Generator_ColumnVarNameInTable="columnTypeName" msprop:Generator_ColumnPropNameInRow="TypeName" msprop:Generator_ColumnPropNameInTable="TypeNameColumn" msprop:Generator_UserColumnName="TypeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Visit_ID" msprop:Generator_ColumnVarNameInTable="columnVisit_ID" msprop:Generator_ColumnPropNameInRow="Visit_ID" msprop:Generator_ColumnPropNameInTable="Visit_IDColumn" msprop:Generator_UserColumnName="Visit_ID" type="xs:int" />
+              <xs:element name="VisitDate" msprop:Generator_ColumnVarNameInTable="columnVisitDate" msprop:Generator_ColumnPropNameInRow="VisitDate" msprop:Generator_ColumnPropNameInTable="VisitDateColumn" msprop:Generator_UserColumnName="VisitDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NextDate" msprop:Generator_ColumnVarNameInTable="columnNextDate" msprop:Generator_ColumnPropNameInRow="NextDate" msprop:Generator_ColumnPropNameInTable="NextDateColumn" msprop:Generator_UserColumnName="NextDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Sex" msprop:Generator_ColumnVarNameInTable="columnSex" msprop:Generator_ColumnPropNameInRow="Sex" msprop:Generator_ColumnPropNameInTable="SexColumn" msprop:Generator_UserColumnName="Sex" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_visit" />
+      <xs:field xpath="mstns:Pet_ID" />
+      <xs:field xpath="mstns:Owner_ID" />
+      <xs:field xpath="mstns:Type_ID" />
+      <xs:field xpath="mstns:Visit_ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

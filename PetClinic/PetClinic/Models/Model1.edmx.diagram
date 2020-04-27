@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83961aeff558428892f343d03a22d699" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="PetClinicModel.AdminLogin" Width="1.5" PointX="5" PointY="4.875" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_Owner" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_Pet" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_Promote" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_TypePet" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_Typeuser" Width="1.5" PointX="2.75" PointY="5" />
+        <EntityTypeShape EntityType="PetClinicModel.Table_Visit" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="PetClinicModel.View_1" Width="1.5" PointX="2.75" PointY="7.75" />
+        <AssociationConnector Association="PetClinicModel.FK_AdminLogin_Table_Typeuser" />
+        <AssociationConnector Association="PetClinicModel.FK_Table_Pet_Table_Owner" />
+        <AssociationConnector Association="PetClinicModel.FK_Table_Pet_Table_TypePet" />
+        <AssociationConnector Association="PetClinicModel.FK_Table_Visit_Table_Pet" />
+        <EntityTypeShape EntityType="PetClinicModel.View_visit" Width="1.5" PointX="7.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

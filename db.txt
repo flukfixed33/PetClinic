@@ -1,0 +1,614 @@
+USE [master]
+GO
+/****** Object:  Database [PetClinic]    Script Date: 4/27/2020 2:18:45 PM ******/
+CREATE DATABASE [PetClinic]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PetClinic', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS01\MSSQL\DATA\PetClinic.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'PetClinic_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS01\MSSQL\DATA\PetClinic_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [PetClinic] SET COMPATIBILITY_LEVEL = 130
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [PetClinic].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [PetClinic] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [PetClinic] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [PetClinic] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [PetClinic] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [PetClinic] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [PetClinic] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [PetClinic] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [PetClinic] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [PetClinic] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [PetClinic] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [PetClinic] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [PetClinic] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [PetClinic] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [PetClinic] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [PetClinic] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [PetClinic] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [PetClinic] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [PetClinic] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [PetClinic] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [PetClinic] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [PetClinic] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [PetClinic] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [PetClinic] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [PetClinic] SET  MULTI_USER 
+GO
+ALTER DATABASE [PetClinic] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [PetClinic] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [PetClinic] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [PetClinic] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [PetClinic] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [PetClinic] SET QUERY_STORE = OFF
+GO
+USE [PetClinic]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+USE [PetClinic]
+GO
+/****** Object:  Table [dbo].[Table_TypePet]    Script Date: 4/27/2020 2:18:45 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_TypePet](
+	[Type_ID] [int] IDENTITY(1,1) NOT NULL,
+	[TypeName] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Table_TypePet] PRIMARY KEY CLUSTERED 
+(
+	[Type_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Table_Owner]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_Owner](
+	[Owner_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Firstname] [nvarchar](50) NULL,
+	[Lastname] [nvarchar](50) NULL,
+	[Address] [nvarchar](max) NULL,
+	[Telephone] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Table_Owner] PRIMARY KEY CLUSTERED 
+(
+	[Owner_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Table_Pet]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_Pet](
+	[Pet_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Type_ID] [int] NULL,
+	[Owner_ID] [int] NULL,
+	[Pet_Name] [nvarchar](50) NOT NULL,
+	[Age] [date] NULL,
+	[Sex] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Table_Pet] PRIMARY KEY CLUSTERED 
+(
+	[Pet_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[View_1]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[View_1]
+AS
+SELECT        dbo.Table_Owner.Owner_ID, dbo.Table_Owner.Firstname, dbo.Table_Owner.Lastname, dbo.Table_Owner.Address, dbo.Table_Owner.Telephone, dbo.Table_Pet.Pet_ID, dbo.Table_Pet.Pet_Name, dbo.Table_Pet.Sex, 
+                         dbo.Table_Pet.Age, dbo.Table_TypePet.Type_ID, dbo.Table_TypePet.TypeName
+FROM            dbo.Table_Owner INNER JOIN
+                         dbo.Table_Pet ON dbo.Table_Owner.Owner_ID = dbo.Table_Pet.Owner_ID INNER JOIN
+                         dbo.Table_TypePet ON dbo.Table_Pet.Type_ID = dbo.Table_TypePet.Type_ID
+GO
+/****** Object:  Table [dbo].[Table_Visit]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_Visit](
+	[Visit_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Pet_ID] [int] NULL,
+	[VisitDate] [date] NULL,
+	[Description] [ntext] NULL,
+	[NextDate] [date] NULL,
+ CONSTRAINT [PK_Table_Visit] PRIMARY KEY CLUSTERED 
+(
+	[Visit_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  View [dbo].[View_visit]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[View_visit]
+AS
+SELECT        dbo.Table_Pet.Pet_ID, dbo.Table_Pet.Pet_Name, dbo.Table_Pet.Age, dbo.Table_Owner.Owner_ID, dbo.Table_Owner.Firstname, dbo.Table_Owner.Lastname, dbo.Table_Owner.Address, dbo.Table_Owner.Telephone, 
+                         dbo.Table_TypePet.Type_ID, dbo.Table_TypePet.TypeName, dbo.Table_Visit.Visit_ID, dbo.Table_Visit.VisitDate, dbo.Table_Visit.Description, dbo.Table_Visit.NextDate, dbo.Table_Pet.Sex
+FROM            dbo.Table_Pet INNER JOIN
+                         dbo.Table_Owner ON dbo.Table_Pet.Owner_ID = dbo.Table_Owner.Owner_ID INNER JOIN
+                         dbo.Table_TypePet ON dbo.Table_Pet.Type_ID = dbo.Table_TypePet.Type_ID INNER JOIN
+                         dbo.Table_Visit ON dbo.Table_Pet.Pet_ID = dbo.Table_Visit.Pet_ID
+GO
+/****** Object:  Table [dbo].[AdminLogin]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AdminLogin](
+	[Username] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](50) NULL,
+	[Typeuser_ID] [int] NULL,
+ CONSTRAINT [PK_AdminLogin] PRIMARY KEY CLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Table_Promote]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_Promote](
+	[Promote_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Promote_Name] [nvarchar](max) NULL,
+	[Promote_Pic] [nvarchar](max) NULL,
+	[Promote_Des] [ntext] NULL,
+ CONSTRAINT [PK_Table_Promote] PRIMARY KEY CLUSTERED 
+(
+	[Promote_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Table_Typeuser]    Script Date: 4/27/2020 2:18:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Table_Typeuser](
+	[Typeuser_ID] [int] IDENTITY(1,1) NOT NULL,
+	[TypeuserName] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Table_Typeuser] PRIMARY KEY CLUSTERED 
+(
+	[Typeuser_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[AdminLogin] ([Username], [Password], [Typeuser_ID]) VALUES (N'Fluk', N'1234', 1)
+GO
+INSERT [dbo].[AdminLogin] ([Username], [Password], [Typeuser_ID]) VALUES (N'flukfixed', N'123456', 2)
+GO
+INSERT [dbo].[AdminLogin] ([Username], [Password], [Typeuser_ID]) VALUES (N'wrk', N'123', 1)
+GO
+INSERT [dbo].[AdminLogin] ([Username], [Password], [Typeuser_ID]) VALUES (N'www', N'www', 2)
+GO
+SET IDENTITY_INSERT [dbo].[Table_Owner] ON 
+GO
+INSERT [dbo].[Table_Owner] ([Owner_ID], [Firstname], [Lastname], [Address], [Telephone]) VALUES (7, N'วรากร', N'หงษ์เวียงจันทร์', N'1/1 ถนนแม่น้ำแคว ตำบลท่ามะขาม อำเภอเมือง จังหวัดกาญจนบุรี', N'0939943813')
+GO
+INSERT [dbo].[Table_Owner] ([Owner_ID], [Firstname], [Lastname], [Address], [Telephone]) VALUES (1007, N'warakorn', N'Hong', N'1/1 ถนนแม่น้ำแคว ตำบลท่ามะขาม อำเภอเมือง จังหวัดกาญจนบุรี', N'0999999999')
+GO
+INSERT [dbo].[Table_Owner] ([Owner_ID], [Firstname], [Lastname], [Address], [Telephone]) VALUES (1011, N'ทดสอบ', N'ทดสอบ', N'ทดสอบ', N'0000000000')
+GO
+INSERT [dbo].[Table_Owner] ([Owner_ID], [Firstname], [Lastname], [Address], [Telephone]) VALUES (1012, N'ภาณุพงศ์', N'วงษ์บัวทอง', N'1/1 ถนนแม่น้ำแคว ตำบลท่ามะขาม อำเภอเมือง จังหวัดกาญจนบุรี', N'0955555555')
+GO
+INSERT [dbo].[Table_Owner] ([Owner_ID], [Firstname], [Lastname], [Address], [Telephone]) VALUES (1013, N'ทดสอบ5', N'tesgtt', N'dsdddsdddd', N'0985555555')
+GO
+SET IDENTITY_INSERT [dbo].[Table_Owner] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Table_Pet] ON 
+GO
+INSERT [dbo].[Table_Pet] ([Pet_ID], [Type_ID], [Owner_ID], [Pet_Name], [Age], [Sex]) VALUES (22, 2, 7, N'ทดสอบ', CAST(N'2018-08-14' AS Date), N'เพศผู้')
+GO
+INSERT [dbo].[Table_Pet] ([Pet_ID], [Type_ID], [Owner_ID], [Pet_Name], [Age], [Sex]) VALUES (23, 2, 1013, N'love', CAST(N'2018-04-04' AS Date), N'เพศผู้')
+GO
+SET IDENTITY_INSERT [dbo].[Table_Pet] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Table_Promote] ON 
+GO
+INSERT [dbo].[Table_Promote] ([Promote_ID], [Promote_Name], [Promote_Pic], [Promote_Des]) VALUES (3, N'Test2', N'637178930193471471.jpg', N'ทดสอบ2')
+GO
+INSERT [dbo].[Table_Promote] ([Promote_ID], [Promote_Name], [Promote_Pic], [Promote_Des]) VALUES (4, N'Test3', N'637178930240400571.jpg', N'Test3')
+GO
+INSERT [dbo].[Table_Promote] ([Promote_ID], [Promote_Name], [Promote_Pic], [Promote_Des]) VALUES (5, N'Test999', N'637178930294425820.jpg', N'Test999')
+GO
+INSERT [dbo].[Table_Promote] ([Promote_ID], [Promote_Name], [Promote_Pic], [Promote_Des]) VALUES (1004, N'TEST4', N'637178930341544448.jpg', N'ข้อกำหนดในการแสดงความคิดเห็น (ประชาพิจารณ์) ต่อประกาศฯนี้ 1. โปรดแสดงความคิดเห็น (ประชาพิจารณ์) 
+ให้สอดคล้องหรือเกี่ยวข้องต่อประกาศฯ นั้นๆ 
+2. ห้ามเผยแพร่ข้อความเนื้อหาที่ทำให้สถาบันชาติ ศาสนา พระมหากษัตริย์และพระบรมวงศานุวงศ์เสื่อมเสีย ไม่ว่าจะเป็นทางข้อความ หรือทางภาพ 
+3. ห้ามเผยแพร่ข้อความและเนื้อหาที่เป็นการโฆษณาชวนเชื่อและหลอกลวง หากฝ่าฝืนจะผิดกฎหมายในข้อหาโฆษณาหลอกลวงประชาชน 
+4. ห้ามเผยแพร่ข้อความและเนื้อหาที่ทำให้ผู้อื่นนั้นเสียหาย รำคาญใจ หรือก่อเกิดความรู้สึกไม่ดีต่อผู้อื่น ไม่ว่าจะเกิดด้วยความตั้งใจหรือไม่ 
+5. ห้ามเผยแพร่ข้อความที่ส่อเสียดหรือว่ากล่าวให้ร้ายแก่ผู้อื่น ไม่ว่าข้อความนั้นจะมีว่าอย่างไร จะกล่าวถึงชื่อผู้อื่นหรือไม่ 
+6. ห้ามเผยแพร่ข้อความที่ยุยงให้ผู้อื่นเกิดความขัดแย้งซึ่งกันและกัน ไม่ว่าผู้ตั้งความคิดเห็นหรือผู้ตอบนั้นจะตั้งใจหรือไม่ 
+7. ห้ามเผยแพร่ข้อความ รูปภาพ ที่ส่อไปในเรื่องเพศ ลามกอนาจาร หรือขัดต่อศีลธรรมอันดีของไทย 
+8. ห้ามเผยแพร่ข้อความที่ไม่ก่อให้เกิดประโยชน์แก่ผู้อื่น หรือข้อความที่ซ้ำๆ ในความคิดเห็นเดียวกันหรือหลายความคิดเห็น ทั้งนี้ขึ้นอยู่กับความเหมาะสม เจตนาของผู้ตั้งความคิดเห็นหรือผู้ตอบ และสถานการณ์ในความคิดเห็นนั้น 
+9. ห้ามเผยแพร่ข้อความหรือความคิดเห็นที่ส่อให้เห็นถึงเจตนาในการพนันต่างๆ ไม่ว่าจะวิธีใดก็ตาม 
+10. ห้ามเผยแพร่ข้อมูลส่วนตัวของตนเองและของผู้อื่น ซึ่งสามารถสร้างความเสียหายให้กับบุคคลผู้เป็นเจ้าของหรือบุคคลที่สาม เช่นหมายเลขโทรศัพท์ หมายเลขบัตรเครดิต ฯลฯ ไม่ว่าผู้เผยแพร่จะมีเจตนาหรือไม่ 11. ขอสงวนสิทธิ์ไม่ให้บริการ Username บางคำที่เป็นของผู้ดูแลระบบ ได้แก่ "webmaster", "web editor", "hostmaster", "postmaster", "admin", "member(s)", "customer / customer service" หรือคำอื่นๆ ที่พิจารณาว่าไม่เหมาะสมสำหรับการใช้เป็น Username 12. ผู้ใช้จะต้องใช้ชื่อที่เหมาะสม ไม่หยาบคาย หรือส่อไปในทางลามกอนาจาร 13. ผู้ดูแลขอสงวนสิทธิ์ในการหยุดให้บริการ เมื่อใดก็ได้ โดยไม่ต้องแจ้งให้ผู้ใช้ทราบล่วงหน้า 14. ผู้ดูแลขอสงวนสิทธิ์ในการลบความคิดเห็น โดยมิต้องแจ้งให้ทราบล่วงหน้า 15. การกระทำการใดๆ ที่ฝ่าฝืนต่อข้อกำหนดข้างต้น จะมีความผิดตาม พระราชบัญญัติ ว่าด้วยการกระทําความผิดเกี่ยวกับคอมพิวเตอร์ (ฉบับที่ 2) พ.ศ. 2560')
+GO
+INSERT [dbo].[Table_Promote] ([Promote_ID], [Promote_Name], [Promote_Pic], [Promote_Des]) VALUES (1005, N'text', N'637178930396813058.jpg', N'999')
+GO
+SET IDENTITY_INSERT [dbo].[Table_Promote] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Table_TypePet] ON 
+GO
+INSERT [dbo].[Table_TypePet] ([Type_ID], [TypeName]) VALUES (1, N'สุนัข')
+GO
+INSERT [dbo].[Table_TypePet] ([Type_ID], [TypeName]) VALUES (2, N'แมว')
+GO
+SET IDENTITY_INSERT [dbo].[Table_TypePet] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Table_Typeuser] ON 
+GO
+INSERT [dbo].[Table_Typeuser] ([Typeuser_ID], [TypeuserName]) VALUES (1, N'หมอ')
+GO
+INSERT [dbo].[Table_Typeuser] ([Typeuser_ID], [TypeuserName]) VALUES (2, N'พนักงาน')
+GO
+SET IDENTITY_INSERT [dbo].[Table_Typeuser] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Table_Visit] ON 
+GO
+INSERT [dbo].[Table_Visit] ([Visit_ID], [Pet_ID], [VisitDate], [Description], [NextDate]) VALUES (1025, 23, CAST(N'2020-04-04' AS Date), N'ให้ยา .....', CAST(N'2020-04-14' AS Date))
+GO
+INSERT [dbo].[Table_Visit] ([Visit_ID], [Pet_ID], [VisitDate], [Description], [NextDate]) VALUES (1026, 23, CAST(N'2020-04-04' AS Date), N'ให้ยา .......', CAST(N'2020-04-15' AS Date))
+GO
+SET IDENTITY_INSERT [dbo].[Table_Visit] OFF
+GO
+ALTER TABLE [dbo].[AdminLogin]  WITH CHECK ADD  CONSTRAINT [FK_AdminLogin_Table_Typeuser] FOREIGN KEY([Typeuser_ID])
+REFERENCES [dbo].[Table_Typeuser] ([Typeuser_ID])
+GO
+ALTER TABLE [dbo].[AdminLogin] CHECK CONSTRAINT [FK_AdminLogin_Table_Typeuser]
+GO
+ALTER TABLE [dbo].[Table_Pet]  WITH CHECK ADD  CONSTRAINT [FK_Table_Pet_Table_Owner] FOREIGN KEY([Owner_ID])
+REFERENCES [dbo].[Table_Owner] ([Owner_ID])
+GO
+ALTER TABLE [dbo].[Table_Pet] CHECK CONSTRAINT [FK_Table_Pet_Table_Owner]
+GO
+ALTER TABLE [dbo].[Table_Pet]  WITH CHECK ADD  CONSTRAINT [FK_Table_Pet_Table_TypePet] FOREIGN KEY([Type_ID])
+REFERENCES [dbo].[Table_TypePet] ([Type_ID])
+GO
+ALTER TABLE [dbo].[Table_Pet] CHECK CONSTRAINT [FK_Table_Pet_Table_TypePet]
+GO
+ALTER TABLE [dbo].[Table_Visit]  WITH CHECK ADD  CONSTRAINT [FK_Table_Visit_Table_Pet] FOREIGN KEY([Pet_ID])
+REFERENCES [dbo].[Table_Pet] ([Pet_ID])
+GO
+ALTER TABLE [dbo].[Table_Visit] CHECK CONSTRAINT [FK_Table_Visit_Table_Pet]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Table_Owner"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 208
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Table_Pet"
+            Begin Extent = 
+               Top = 6
+               Left = 246
+               Bottom = 136
+               Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Table_TypePet"
+            Begin Extent = 
+               Top = 6
+               Left = 454
+               Bottom = 102
+               Right = 624
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_1'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_1'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Table_Pet"
+            Begin Extent = 
+               Top = 5
+               Left = 15
+               Bottom = 135
+               Right = 185
+            End
+            DisplayFlags = 280
+            TopColumn = 2
+         End
+         Begin Table = "Table_Owner"
+            Begin Extent = 
+               Top = 6
+               Left = 246
+               Bottom = 136
+               Right = 416
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Table_TypePet"
+            Begin Extent = 
+               Top = 152
+               Left = 242
+               Bottom = 248
+               Right = 412
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "Table_Visit"
+            Begin Extent = 
+               Top = 138
+               Left = 454
+               Bottom = 268
+               Right = 624
+            End
+            DisplayFlags = 280
+            TopColumn = 1
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 13' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_visit'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'50
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_visit'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_visit'
+GO
+USE [master]
+GO
+ALTER DATABASE [PetClinic] SET  READ_WRITE 
+GO

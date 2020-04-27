@@ -1,0 +1,26 @@
+﻿@model PetClinic.Models.Table_Typeuser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Table_Typeuser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeuserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeuserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Typeuser_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

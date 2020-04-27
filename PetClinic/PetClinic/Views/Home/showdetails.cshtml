@@ -1,0 +1,28 @@
+﻿@model PetClinic.Models.Table_Promote
+<style>
+    p {
+    text-indent: 30px;		//กำหนดค่าย่อหน้า
+}
+</style>
+    <div class="modal-content" style="background-color:beige">
+        <div class="modal-header">
+            <h5>@Model.Promote_Name</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:red">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+
+            <div class="row">
+
+            <img class="rounded-0 col-3" style="width:300px;height:200px;display:inline-block" src="~/img/@Model.Promote_Pic">
+            <p class="col">@Model.Promote_Des</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ">Close</button>
+        </div>
+    </div>
+

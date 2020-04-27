@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PetClinic.Models.Table_Promote>
+<div class="modal-header" style="background-color:#F39C12">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title" style="letter-spacing: 0px; font-size: 25px;color:white">รายละเอียดหลักสูตร</h4>
+</div>
+
+<div class="modal-body">
+    @foreach (var item in Model)
+    {
+        <h1>
+            @Html.DisplayNameFor(model => model.Promote_Name)
+        </h1>
+        <h5>
+            @Html.DisplayFor(modelItem => Model.)
+        </h5>
+    </div>
+<div class="modal-footer">
+    <a class="btn btn-success" href="@Url.Action("Registers", "Generations", new {id = Model.Gen_NO})"><i class="fa fa-plus"></i>ลงทะเบียน</a>
+
+    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+</div>

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    @{
+        if (Session["username"] == null) { Response.Redirect("~/Home/Contact"); }
+    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+        {
+            @ViewBag.Title@:
+        }
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/dashboard/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="~/dashboard/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="~/dashboard/css/style.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            font-family: 'kanit', sans-serif;
+        }
+        /* ใช้เฉพาะหัวข้อ */
+        h1, h2, h3, h4, h5, h6, p {
+            font-family: 'kanit', sans-serif;
+        }
+
+        title {
+            font-family: 'kanit', sans-serif;
+        }
+
+        .fontx {
+            font-family: 'kanit', sans-serif;
+        }
+
+        a {
+            font-family: 'kanit', sans-serif;
+        }
+
+        span {
+            font-family: 'kanit', sans-serif;
+        }
+
+        vvvv
+
+        div {
+            font-family: 'kanit', sans-serif;
+        }
+
+        input {
+            font-family: 'kanit', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="grey lighten-3">
+
+    <header>
+        <div class="sidebar-fixed position-fixed ">
+            <br />
+            <a href="../Home/Index">
+                <div class="text-center">
+                <img src="~/assets/สัตวแพทย์_job_2019-03-25-13-48-04.png" height="150" width="150" align="middle" /> <br />
+                </div>
+            </a>
+            <h5 style="text-align:center">คลินิกสัตวแพทย์อวยชัย</h5>
+            @*<iframe clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:250px;height:20px;" src="https://www.clocklink.com/html5embed.php?clock=018&timezone=Thailand_Bangkok&color=green&size=240&Title=&Message=&Target=&From=2019,1,1,0,0,0&DateFormat=dd / mm / yyyy&TimeFormat=hh:mm TT&Color=green"></iframe>*@
+        <div class="list-group list-group-flush">
+            <a href="@Url.Action("Index", "Table_Owner")" class="list-group-item ">
+                <i></i>จัดการข้อมูลเจ้าของสัตว์
+            </a>
+            <a href="@Url.Action("Index", "Table_Pet")" class="list-group-item ">
+                <i></i>จัดการข้อมูลสัตว์เลี้ยง
+            </a>
+            <a href="@Url.Action("Index", "Table_TypePet")" class="list-group-item ">
+                <i></i>จัดการประเภทสัตว์
+            </a>
+            <a href="@Url.Action("Index", "Table_Visit")" class="list-group-item ">
+                <i></i> จัดการประวัติการรักษา
+            </a>
+            <a href="@Url.Action("Index", "AdminLogins")" class="list-group-item ">
+                <i></i>จัดการสมาชิก
+            </a>
+            <a href="@Url.Action("Index", "Table_Promote")" class="list-group-item ">
+                <i></i>ข้อมูลประชาสัมพันธ์
+            </a>
+
+            <a href="http://cstee.kru.ac.th/CS59/59123250133/Reports/WebFormPets.aspx" class="list-group-item ">
+                <i></i>รายงานข้อมูลสัตว์
+            </a>
+            <a href="http://cstee.kru.ac.th/CS59/59123250133/Reports/WebForm2.aspx" class="list-group-item ">
+                <i></i>รายงานประวัติการรักษา
+            </a>
+            <a href="@Url.Action("Logout", "Home")" class="list-group-item">
+                <i></i>ออกจากระบบ
+            </a>
+        </div>
+
+        </div>
+
+
+
+
+        <!-- Sidebar -->
+
+    </header>
+    <!--Main Navigation-->
+    <!--Main layout-->
+    <main class="pt-5 mx-lg-5">
+        <div>
+            <div align="right">
+                <h6 style="color:forestgreen">สวัสดีคุณ @Session["username"]</h6>
+            </div>
+            <div class="container body-content">
+
+            @RenderBody()
+            </div>
+
+        </div>
+        <!-- Heading -->
+        <!--Grid row-->
+
+
+    </main>
+    <!--Main layout-->
+    <!--Footer-->
+    <!--/.Footer-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="~/dashboard/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="~/dashboard/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="~/dashboard/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="~/dashboard/js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>
